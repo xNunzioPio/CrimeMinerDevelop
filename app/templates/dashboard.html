@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeMiner</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+    <!--Icone-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!--Bootstrap Library-->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!--CkEditor-->
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
+
+    <!--Cytoscape Library-->
+    <script type="text/javascript" src="{% static 'cytoscape/dist/cytoscape.min.js' %}"></script>
+
+    <!--Cytoscape Fcose (Force-Atlas-Layout Library)-->
+    <script type="text/javascript" src="{% static 'layout-base/layout-base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cose-base/cose-base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cytoscape-fcose/cytoscape-fcose.js' %}"></script>
+
+    <!--Cytoscape Dagre Library-->
+    <script type="text/javascript" src="{% static 'dagre/dist/dagre.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cytoscape-dagre/cytoscape-dagre.js' %}"></script>
+
+    <!--Cookie-->
+    <script type="text/javascript" src="{% static 'js/cookie.js' %}"></script>
+
+    <!--Toast-->
+    <script type="text/javascript" src="{% static 'js/toast.js' %}"></script>
+
+    <!--Load-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/load.css' %}">
+    <script type="text/javascript" src="{% static 'js/load.js' %}"></script>
+
+    <!--Dashboard-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+
+    <!--Generic Layout of graph page-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/features/layoutPageGraph.css' %}">
+    <script type="text/javascript" src="{% static 'js/features/layoutPageGraph.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/features/welcomePage.css' %}">
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+<body>
+    <div id=".menu-item" class="sidebar sidebar-personal">
+        <div class="sidebarContainer">
+        <div class="sidebarContainerLogo">
+          <a class="navbarLogoContainer" href="{% url 'welcomePage' %}">
+            <img class="navbarLogo" src="{% static 'img/logo.png' %}">
+          </a>
+        </div>
+        
+            <ul class="sidebarUl">
+                <li class="sidebarFirst dropdown">
+                    <div class="dropdown-btn" onclick="toggleDropdown()">
+                        <img class="sidebarIcon sidebarIcon-personal" src="{% static 'img/dashboardHeader/statistics.png' %}">
+                        <h5>Analisi & Grafi</h5>
+                        <ion-icon name="chevron-down-outline" class="dropdown-arrow"></ion-icon>
+                    </div>
+                    <ul class="dropdown-content">
+                        <li class="sidebarItem">
+                            <a id="intercettazioni-telefoniche" class="link" href="{% url 'individualWiretaps' %}">
+                                <img class="sidebarIcon" src="{% static 'img/dashboardHeader/individualWiretaps.png' %}">
+                                Intercettazioni Telefoniche
+                            </a>
+                        </li>
+                        <li class="sidebarItem">
+                            <a id="crimini" class="link" href="{% url 'individualCrimes' %}">
+                                <img class="sidebarIcon" src="{% static 'img/dashboardHeader/individualCrimes.png' %}">
+                                Crimini
+                            </a>
+                        </li>
+                        <li class="sidebarItem">
+                            <a id="intercettazioni-ambientali" class="link" href="{% url 'individualEnviromentalTapping' %}">
+                                <img class="sidebarIcon" src="{% static 'img/dashboardHeader/individualEnviromentalTapping.png' %}">
+                                Intercettazioni Ambientali
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="sidebarIl">
+                <li class="sidebarSecond dropdown">
+                    <div class="dropdown-btn" onclick="toggleDropdown2()">
+                        <img class="sidebarIcon sidebarIcon-personal" src="{% static 'img/dashboardHeader/setting.png' %}">
+                        <h5>Impostazioni</h5>
+                        <ion-icon name="chevron-down-outline" class="dropdown-arrow"></ion-icon>
+                    </div>
+                    <br>
+                    <ul class="dropdown-content">
+                        <li class="sidebarThird dropdown">
+                            <div class="dropdown-btn" onclick="toggleDropdown3()">
+                                <img class="sidebarIcon" src="{% static 'img/dashboardHeader/graphImg.png' %}">
+                                <h6>Modifica Grafico</h6>
+                                <ion-icon name="chevron-down-outline" class="dropdown-arrow"></ion-icon>
+                            </div>
+                            <ul class="sidebarThird dropdown-content">
+                                <li class="sidebarItemGrafo">
+                                    <div class="d-flex flex-column">
+                                        <div for="recipient-layout" class="col-form-label">
+                                          Grafico
+                                        </div>
+                                        <select class="form-select selectLayout" class="form-control" id="recipient-layout" aria-label="Default select example" onchange="changeGraphLayout();">
+                                          <option value="circle">Cerchio</option>
+                                          <option value="dagre">Dagre</option>
+                                          <option value="fcose" selected>Force Atlas</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <div class="d-flex flex-wrap accordionCheckboxNodeEdge">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" onclick="checkedNodesAndEdges()" id="CheckNodes" checked>
+                                      <label class="form-check-label" for="CheckNodes">
+                                        Nomi Nodi
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" onclick="checkedNodesAndEdges()" id="CheckEdges">
+                                      <label class="form-check-label" for="CheckEdges">
+                                        Nomi Archi
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" onclick="checkedAnonymization()" id="CheckAnonymization">
+                                      <label class="form-check-label" for="CheckEdges">
+                                        Anonimizzazione
+                                      </label>
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="sidebarItem">
+                            <a id="crimini" class="link" href="{% url 'individualEnviromentalTapping' %}">
+                                <img class="sidebarIcon" src="{% static 'img/dashboardHeader/timeline.png' %}">
+                                Timeline
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="sidebarUl-1">
+                <li class="sidebarFirst dropdown">
+                    <div class="dropdown-btn">
+                        <img class="sidebarIcon sidebarIcon-personal" src="{% static 'img/dashboardHeader/info.png' %}">
+                       <a href="#" class="link-info-processo" id="openTabLink"><h5>Info processo</h5></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pageContainer">
+        
+        <!--Barra di caricamento delle pagine-->
+        <div class="loadingContainer">
+            <div class="loadingContent"></div>
+        </div>
+
+        <!--Qui verranno inserite le varie pagine-->
+            {% block content %}
+            <div class="pageContent">
+                <div id="content-area">
+                    
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    <!--Messaggi di notifica per le operazioni salvataggio-->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <!--<img src="..." class="rounded me-2" alt="...">-->
+                <strong class="me-auto toast-header-content"></strong>
+                <!--<small>11 mins ago</small>-->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <div id="tabContainer" class="tab hidden">
+        <div class="tabHeader">
+          <h5>Procedimento 26026/2003</h5>
+          <button id="closeTabBtn" class="closeTab" style="font-size: 16px;">X</button>
+        </div>
+        <div class="tabContent">
+            <h6>RICHIESTA PER L'APPLICAZIONE DI MISURE CAUTELARI PERSONALI E REALI <br> - artt. 272 e segg. c.p.p. -</h6>
+            <p>
+                Il clan Cava, nato tra la fine degli anni '70 e l'inizio degli anni '80, si sviluppa nell'area del Vallo di Lauro, a Quindici, in provincia di Avellino. Inizialmente uniti ai Graziano, i due gruppi si dividono 
+                in seguito a divergenze interne, dando vita a una faida sanguinosa che continua per oltre vent'anni. Questa faida nasce dalla rivalità tra le due famiglie per il controllo del territorio e delle risorse economiche
+                aggravata dall'alleanza dei Cava con il clan Fabbrocino e dalla contrapposizione tra la Nuova Camorra Organizzata di Raffaele Cutolo e la Nuova Famiglia. Nel corso degli anni, i Cava e i Graziano si sono
+                scontrati in una lunga serie di omicidi e atti violenti, caratterizzati da numerosi agguati, tentativi di omicidio e atti di intimidazione contro civili e membri delle famiglie rivali. La faida ha visto
+                il coinvolgimento di esponenti di spicco delle due famiglie e ha portato a numerosi arresti e sequestri di armi, dimostrando la pervasività del controllo criminale sul territorio. Oltre alla violenza
+                tra clan, il gruppo Cava è coinvolto in estorsioni, minacce e traffico di armi, consolidando il proprio dominio economico e criminale. Le attività estorsive sono accompagnate da incendi dolosi
+                atti intimidatori contro aziende locali e traffico di stupefacenti contribuendo a mantenere un clima di paura e omertà. La loro influenza si estende anche alla politica locale, dove i clan
+                cercano di influenzare le amministrazioni comunali a loro vantaggio.
+            </p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openTabLink = document.getElementById('openTabLink');
+            const tabContainer = document.getElementById('tabContainer');
+            const closeTabBtn = document.getElementById('closeTabBtn');
+
+            openTabLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                tabContainer.style.display = 'block';
+            });
+
+            closeTabBtn.addEventListener('click', () => {
+                tabContainer.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

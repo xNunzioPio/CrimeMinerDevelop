@@ -1,0 +1,363 @@
+{% extends 'dashboard.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/features/individualCrimesEnviromentalTapping/individualCrimesEnviromentalTapping.css' %}">
+<script type="text/javascript" src="{% static 'js/features/individualCrimesEnviromentalTapping.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex w-100 bd-highlight">
+    <div class="cyContainer p-2 flex-grow-1 bd-highlight">
+      <div class="cyContent"></div>
+    </div>
+    <div class="accordionContainer p-2 bd-highlight">
+      <!-- Button trigger modal -->
+      <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalIndividualCrimesEnviromentalTapping">
+        Inserisci una nuova condanna o imputazione
+      </button>-->
+      <div class="accordion">
+
+        <!-- Properties -->
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-properties" class="accordionCheckboxLabel"/>
+          <label for="item-properties" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="information-circle" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonOne">Proprietà</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <div class="accordionNumberNodesEdges">
+                <div class="accordionNumberNodesEdgesIndividual">
+                  <div>Individui</div>
+                  <div class="accordionNumberNodesEdgesIndividualContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesCrimes">
+                  <div>Reati</div>
+                  <div class="accordionNumberNodesEdgesCrimesContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesEnviromentalTapping">
+                  <div>Intercettazioni</div>
+                  <div class="accordionNumberNodesEdgesEnviromentalTappingContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesCall">
+                  <div>Chiamate</div>
+                  <div class="accordionNumberNodesEdgesCallContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesSentence">
+                  <div>Sentenze</div>
+                  <div class="accordionNumberNodesEdgesSentenceContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesImputation">
+                  <div>Imputazioni</div>
+                  <div class="accordionNumberNodesEdgesImputationContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesPresent">
+                  <div>Presenze</div>
+                  <div class="accordionNumberNodesEdgesPresentContent"></div>
+                </div>
+                <hr></hr>
+                <div class="accordionNumberNodesEdgesNodes">
+                  <div class="accordionNumberNodesEdgesNodesTitle">Totale Nodi</div>
+                  <div class="accordionNumberNodesEdgesNodesContent"></div>
+                </div>
+                <div class="accordionNumberNodesEdgesEdges">
+                  <div class="accordionNumberNodesEdgesEdgesTitle">Totale Archi</div>
+                  <div class="accordionNumberNodesEdgesEdgesContent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+  
+        <!-- Details -->
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-details" class="accordionCheckboxLabel"/>
+          <label for="item-details" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="color-wand-outline" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonTwo">Dettagli</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <!--Individuo-->
+              <div class="infoIndividualCrimesEnviromentalTappingNodeIndividual">
+
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualSurname d-flex">
+                  <div>Cognome</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualSurnameContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualName d-flex">
+                  <div>Nome</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualNameContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualBirth d-flex">
+                  <div>Data Nascita</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualBirthContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualNation d-flex">
+                  <div>Paese</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualNationContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualProvince d-flex">
+                  <div>Provincia</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualProvinceContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualResidence d-flex">
+                  <div>Città</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualResidenceContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualCap d-flex">
+                  <div>Cap</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualCapContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualAddress d-flex">
+                  <div>Indirizzo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeIndividualAddressContent"></div>
+                </div>
+              </div>
+
+              <!--Intercettazione Ambientale-->
+              <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTapping">
+
+                <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingDate d-flex">
+                  <div>Data</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingDateContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingPlace d-flex">
+                  <div>Luogo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingPlaceContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingContent d-flex">
+                  <div>Contenuto</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeEnviromentalTappingContentContent"></div>
+                </div>
+              </div>
+
+              <!--Reato-->
+              <div class="infoIndividualCrimesEnviromentalTappingNodeCrime">
+
+                <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeName d-flex">
+                  <div>Nome</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeNameContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeNorms d-flex">
+                  <div>Norme</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeNormsContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeMinMonths d-flex">
+                  <div>Mesi Minimi</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeMinMonthsContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeMaxMonths d-flex">
+                  <div>Mesi Massimi</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingNodeCrimeMaxMonthsContent"></div>
+                </div>
+              </div>
+
+              <!--Arco Individuo/Crimine-->
+              <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrime">
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeIndividual d-flex">
+                  <div>Individuo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeIndividualContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeCrime d-flex">
+                  <div>Reato</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeCrimeContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeAggTitle">
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeAggTitleId d-flex">
+                    id
+                  </div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeAggTitleDescription d-flex">
+                    descrizione
+                  </div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeAggTitleNorms d-flex">
+                    norms
+                  </div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualCrimeAggContainer">
+                  
+                </div>
+              </div>
+
+              <!--Arco Individuo/Individuo-->
+              <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividual">
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualDate d-flex">
+                  <div>Data</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualDateContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualDuration d-flex">
+                  <div>Durata chiamata</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualDurationContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualTime d-flex">
+                  <div>Ora chiamata</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualTimeContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualSource d-flex">
+                  <div>Mittente</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualSourceContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualTarget d-flex">
+                  <div>Destinatario</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualTargetContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualContent d-flex">
+                  <div>Contenuto</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualContentContent"></div>
+                </div>
+              </div>
+
+              <!--Arco Individuo/Intercettazione Ambientale-->
+              <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTapping">
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingId d-flex">
+                  <div>Identificativo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingIdContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingIndividual d-flex">
+                  <div>Individuo</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingIndividualContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingEnviromentalTapping d-flex">
+                  <div>Reato</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingEnviromentalTappingContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsEntered d-flex">
+                  <div>Mesi Imputati</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsEnteredContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsSentence d-flex">
+                  <div>Mesi Condanna</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsSentenceContent"></div>
+                </div>
+                <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsTotal d-flex">
+                  <div>Mesi Totali</div>
+                  <div class="infoIndividualCrimesEnviromentalTappingEdgeIndividualEnviromentalTappingMonthsTotalContent"></div>
+                </div>
+              </div>
+
+              <div class="infoIndividualCrimesEnviromentalTappingNot">
+                Non ci sono informazioni da visualizzare al momento
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+  
+        <!-- Settings -->
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-settings" class="accordionCheckboxLabel"/>
+          <label for="item-settings" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="cog" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonThree">Impostazioni</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <div class="d-flex flex-wrap accordionCheckboxNodeEdge">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" onclick="checkedNodesAndEdgesIndividualCrimesEnviromentalTapping()" id="CheckNodes" checked>
+                  <label class="form-check-label" for="CheckNodes">
+                    Nomi Nodi
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" onclick="checkedNodesAndEdgesIndividualCrimesEnviromentalTapping()" id="CheckEdges">
+                  <label class="form-check-label" for="CheckEdges">
+                    Nomi Archi
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" onclick="checkedAnonymizationIndividualCrimesEnviromentalTapping()" id="CheckAnonymization">
+                  <label class="form-check-label" for="CheckEdges">
+                    Anonimizzazione
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex accordionLayoutMetrics">
+                <div class="d-flex flex-column">
+                  <div for="recipient-layout" class="col-form-label">
+                    Layout
+                  </div>
+                  <select class="form-select selectLayout" aria-label="Default select example" id="recipient-layout" onchange="changeLayoutIndividualCrimesEnviromentalTapping();">
+                    <option value="circle" selected>Cerchio</option>
+                    <option value="dagre">Dagre</option>
+                    <option value="fcose">Force Atlas</option>
+                  </select>
+                </div>
+                <div class="d-flex flex-column">
+                  <div for="recipient-metrics" class="col-form-label">
+                    Metriche
+                  </div>
+                  <select class="form-select selectMetrics" aria-label="Default select example" id="recipient-metrics" onchange="changeMetricIndividualCrimesEnviromentalTapping();">
+                    <option value="Default" selected>Default</option>
+                    <option value="PageRank">PageRank</option>
+                    <option value="WeightedPageRank">Weighted PageRank</option>
+                    <option value="Betweenness">Betweenness</option>
+                    <option value="Closeness">Closeness</option>
+                    <option value="Degree">Degree</option>
+                    <option value="InDegree">InDegree</option>
+                    <option value="OutDegree">OutDegree</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+    </div>
+    
+</div>
+{% endblock %}

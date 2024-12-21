@@ -1,0 +1,288 @@
+
+/* Stile base */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #ffffff; 
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Scroll fluido */
+}
+
+
+/* Sezioni */
+.section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Sezione Progetto */
+.section.progetto {
+    display: flex;
+    align-items: center; /* Allinea il contenuto al centro verticalmente */
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px; /* Distanza tra logo e descrizione */
+    align-items: center; /* Allinea il contenuto centralmente rispetto all'altezza */
+    margin: 0 auto;
+}
+
+/* Stile per il Logo */
+.logo img {
+    max-width: 600px; /* Aumento della dimensione del logo */
+    height: auto; /* Mantiene le proporzioni */
+    object-fit: contain; /* Mantiene la qualità del logo */
+}
+
+/* Stile per la Descrizione */
+.description {
+    max-width: 700px; /* Limita la larghezza della descrizione */
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify; /* Allinea il testo giustificato */
+    padding-left: 35px; /* Distanza tra descrizione e logo */
+}
+
+/* Colore per la parola CrimeMiner */
+.description strong {
+    color: #941212; /* Colore rosso */
+    font-size: 20px;
+}
+
+.description p{
+    font-size: 17px;
+}
+
+/* Stile per la sezione Team */
+.section.team {
+    padding: 25px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.team h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #880000;
+    margin-top: 0vh;
+}
+.team h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 45px;
+    height: 3px;
+    background: #880000;
+    left: calc(48.7%);
+}
+.descrizione-team{
+    margin-top: 67px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Contenitore della griglia */
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 card per riga */
+    gap: 30px;
+    justify-items: center;
+}
+
+/* Card membro del team */
+.team-member {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    max-width: 250px; /* Larghezza delle card aumentata */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Immagine senza bordo rotondo */
+.team-photo {
+    width: 247px; /* Aumentiamo la larghezza dell'immagine */
+    height: 250px; /* Aumentiamo l'altezza dell'immagine */
+    object-fit: cover;
+}
+
+/* Nome membro */
+.team-member h3 {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: -20px;
+    color: #333;
+}
+
+/* Ruolo membro */
+.role {
+    font-size: 16px;
+    margin-top: 20px;
+    color: #777;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 card per riga su schermi piccoli */
+    }
+}
+
+@media (max-width: 480px) {
+    .team-container {
+        grid-template-columns: 1fr; /* 1 card per riga su schermi molto piccoli */
+    }
+}
+
+
+
+
+/* Stile per la sezione Contatti */
+.section.contatti {
+    display: flex;
+    justify-content: space-between; /* Colonne separate in modo da prendere tutto lo spazio */
+    align-items: center; /* Allineamento verticale */
+    background-color: #ffffff;
+    height: 100vh; /* Impostiamo l'altezza della sezione per prendere tutta l'altezza della finestra */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+}
+
+.contatti-container {
+    display: grid;
+    margin-top: -35px;
+    margin-left: -60px;
+    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+    gap: 3  0px;
+    width: 100%; /* La griglia prende tutta la larghezza disponibile */
+    height: 100vh; /* La griglia occupa tutta l'altezza della sezione */
+    margin-bottom: -35px;
+    margin-right: -130px;
+}
+
+.logo-container {
+    background:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.logo-contatti {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px; /* Impostiamo un'altezza massima per il logo */
+}
+
+.info-container {
+    background: #f3f3f3;
+    padding-top: 30%;
+    text-align: center; 
+    margin-right: 10%;
+    width: 100%;
+}
+
+.info-container h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.subSubTit {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+.subTit{
+    color: #ad1515;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .contatti-container {
+        grid-template-columns: 1fr; /* 1 colonna su schermi piccoli */
+    }
+
+    .info-container {
+        padding-left: 0; /* Rimuoviamo il padding a sinistra su schermi piccoli */
+    }
+}
+
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .contatti-container {
+        grid-template-columns: 1fr; /* 1 colonna su schermi piccoli */
+    }
+
+    .info-container {
+        padding-left: 0; /* Rimuoviamo il padding a sinistra su schermi piccoli */
+    }
+}
+
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .contatti-container {
+        grid-template-columns: 1fr; /* 1 colonna su schermi piccoli */
+    }
+
+    .info-container {
+        padding-left: 0;
+    }
+}
+
+
+
+/* Stile per la freccia verso il basso */
+.arrow-down {
+    display: inline-block;
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: rgb(124, 19, 19);
+    text-decoration: none;
+    animation: bounce 2s infinite;
+}
+
+#team .arrow-down {
+    color: #333; /* Colore scuro per la freccia nella sezione Team */
+}
+
+.arrow-down:hover {
+    color: #007BFF; /* Cambia colore al passaggio del mouse */
+    cursor: pointer;
+}
+
+
+/* Animazione per la freccia */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+

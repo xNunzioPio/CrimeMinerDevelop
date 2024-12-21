@@ -1,0 +1,332 @@
+$varShdwClr: rgba(0,0,0,0.3);
+$varSaveModal: #464e5a;
+$varGrayHoverColor: #464e5a;
+$varBackColor: #cfcfcf;
+$varWhiteColor: white;
+$varFocusColor: #dee2e6;
+$varRedColor: #a30404;
+
+.accordion{
+
+    &Container{
+        display: flex;
+        flex-direction: column;
+        gap:1.5rem;
+        width:24rem;
+        height: 100vh;
+        padding-top: 1.5rem !important;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-right: 9px;
+        max-width: 385px;
+
+        &::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+            border-radius: 10px;
+            background-color: auto;
+        }
+
+        &::-webkit-scrollbar {
+            width: 12px;
+	        background-color: auto;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+            background-color: $varBackColor;
+        }
+
+        &ButtonAdd{
+            background-color: $varSaveModal;
+            color: $varWhiteColor;
+            --bs-btn-hover-bg: #464e5a !important;
+            --bs-btn-hover-border-color: #464e5a !important;
+
+            :hover,:focus{
+                background-color: $varGrayHoverColor !important;
+                color: $varWhiteColor !important;
+            }
+        }
+    }
+
+    &Icon{
+        //width: 1.5rem;
+        transition: all 0.75s;
+    
+        &Arrow{
+            width: 1rem;
+            transition: all 0.75s;
+        }
+    
+        &ToggleRight{
+            transform: rotate(0deg);
+
+            &Svg{
+                width: 1rem;
+                height: 1rem;
+                fill:$varRedColor;
+            }
+        }
+    
+        &ToggleDown{
+            transform: rotate(90deg);
+
+            &Svg{
+                width: 1rem;
+                height: 1rem;
+                fill:black;
+            }
+        }
+    }
+
+    //Other
+    &-item{
+        background-color: #ffffff;
+        border-radius: 0.5rem !important;
+        box-shadow: 5px 5px 4.5px #dedede;
+    }
+
+    &-header{
+        padding: 1em;
+        font-size: 1em;
+        display: flex;
+        justify-content: space-between;
+        color: $varSaveModal !important;
+        cursor: pointer;
+        font-weight: 500;
+
+        &-container{
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            padding-left: 1rem;
+        }
+    }
+
+    //Other
+    &-content{
+        color: #606060;
+        //font-size: 0.8rem;
+        line-height: 1.8rem;
+    }
+
+    //Other
+    &-icon{
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        
+    }
+
+    &-button{
+        //border: 1px solid white;
+        border-radius: 10px !important;
+
+        &:focus {
+            box-shadow: inset 0 calc(-1 * 1px) 0 $varFocusColor;
+            border: 1px solid $varWhiteColor;
+        }
+
+        &:not(.collapsed){
+            background-color: $varWhiteColor;
+            color: black;
+        }
+
+        .collapsed{
+            border-color: rgba(0, 0, 0, 0);
+        }
+    }
+
+    &NumberNodesEdges{
+        display: flex;
+        flex-direction: column;
+        gap:0.4rem;
+        padding: 5px;
+
+        &Nodes,&Edges{
+            display: flex;
+            justify-content: space-between;
+
+            &Title{
+                font-weight: bold;
+            }
+        }
+
+        //Se si cerca lo style del contenuto del div, quindi nodi e archi (identificati), sono nelle singole pagine 
+        //in quanto contengono informazioni diverse pagina per pagina
+    }
+
+    &LayoutMetrics{
+        justify-content: space-between;
+    }
+
+    &CheckboxNodeEdge{
+        padding: 1rem 1.25rem;
+        column-gap: 3rem;
+        row-gap: 0.5rem;
+        //justify-content: space-around;
+    }
+
+    //Other
+    &CheckboxLabel{
+        display: none;
+        appearance: none;
+    }
+
+    //Other
+    &CheckboxLabel ~ label .accordionArrow{
+        display: inline-block;
+        transition: 1s;
+    }
+
+    //Other
+    &CheckboxLabel:checked ~ label{
+        color: #14161e;
+
+        & .accordionArrow{
+            transform: rotate(90deg);
+        }
+    }
+
+    //Other
+    &CheckboxLabel ~ .accordion-content{
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.8s;
+    }
+
+    //Other
+    &CheckboxLabel:checked ~ .accordion-content{
+        max-height: 100vh;
+        transition: 2s;
+    }
+
+    .select{
+        &Layout,&Metrics{
+            font-size: 0.9rem;
+            box-shadow: none;
+            
+            &:focus{
+                border: 1px solid $varFocusColor;
+            }
+
+            option{
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    &ButtonOne, &ButtonTwo, &ButtonThree{
+        font-weight: 600;
+    }
+}
+
+hr{
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+    border-color: #00000052;
+}
+
+.cy{
+
+    &Container{
+        position: relative;
+        height: 100%;
+    }
+
+    &Content{
+        position: relative;
+        height: 100vh;
+        left: 0px;
+        top: 0px;
+    }
+    
+}
+
+.modal{
+    &-dialog{
+        max-width: 40rem !important;
+    }
+
+    &-body{
+        max-height: 60vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+            border-radius: 10px;
+            background-color: auto;
+        }
+
+        &::-webkit-scrollbar {
+            width: 12px;
+	        background-color: auto;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+            background-color: $varBackColor;
+        }
+    }
+
+    .accordion-button{
+        box-shadow: none;
+
+        &:focus{
+            border: 0px;
+        }
+    }
+
+    &Container{
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    &Form{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &ButtonSave{
+        background-color: $varSaveModal;
+        color: $varWhiteColor;
+
+        :hover,:focus{
+            background-color: $varSaveModal;
+            color: $varWhiteColor;
+        }
+    }
+}
+
+/* Arrotonda i bordi dell'editor CKEditor */
+.cke_top{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#cke_message-text,.cke_inner,.cke_contents{
+    border-radius: 10px
+}
+
+.cke_scrollbar{
+    &::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+        border-radius: 10px;
+        background-color: auto;
+    }
+
+    &::-webkit-scrollbar {
+        width: 12px;
+        background-color: auto;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px $varShdwClr;
+        background-color: $varBackColor;
+    }
+}

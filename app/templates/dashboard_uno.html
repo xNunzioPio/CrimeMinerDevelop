@@ -1,0 +1,269 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>CrimeMiner</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_uno.css' %}">
+
+    <!--Icone-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+
+    <!--CkEditor-->
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
+
+    <!--Cytoscape Library-->
+    <script type="text/javascript" src="{% static 'cytoscape/dist/cytoscape.min.js' %}"></script>
+
+    <!--Cytoscape Fcose (Force-Atlas-Layout Library)-->
+    <script type="text/javascript" src="{% static 'layout-base/layout-base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cose-base/cose-base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cytoscape-fcose/cytoscape-fcose.js' %}"></script>
+
+    <!--Cytoscape Dagre Library-->
+    <script type="text/javascript" src="{% static 'dagre/dist/dagre.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cytoscape-dagre/cytoscape-dagre.js' %}"></script>
+
+    <!--Cookie-->
+    <script type="text/javascript" src="{% static 'js/cookie.js' %}"></script>
+
+    <!--Toast
+    <script type="text/javascript" src="{% static 'js/toast.js' %}"></script> -->
+
+    <!--Bootstrap Library-->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!--Load-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/load.css' %}">
+    <script type="text/javascript" src="{% static 'js/load.js' %}"></script>
+
+    <!--Dashboard-->
+    <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+
+    <!--Generic Layout of graph page-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/features/layoutPageGraph.css' %}">
+    <script type="text/javascript" src="{% static 'js/features/layoutPageGraph.js' %}"></script>
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    
+    {% include 'navbar.html' %}
+
+    <!-- Layout principale -->
+    <div class="main">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div style="height: 50px;"></div>
+            <ul>
+                <!-- Prima voce con icona e sottomenu -->
+                <li>
+                    <a href="#" class="toggle-menu">
+                        <img src="/static/img/grafo.svg" alt="Grafo Icon" style="width: 30px; height: 30px; filter: brightness(0) invert(1); vertical-align: middle;"><span>Analisi & Grafi</span>
+                        &nbsp;
+                        <i class="fas fa-chevron-right arrow" style="font-size: 12px; margin-left: 3px;"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a id="intercettazioni-telefoniche" class="link menu-item" data-page="Intercettazioni Telefoniche" href="{% url 'individualWiretaps' %}">
+                                <i class="fa-solid fa-phone-volume"></i> Intercettazioni telefoniche
+                            </a>
+                        </li>
+                        <li><a id="crimini" class="link menu-item" data-page="Crimini" href="{% url 'individualCrimes' %}">
+                            <i class="fa-solid fa-handcuffs"></i></i> Crimini
+                            </a>
+                        </li>
+                        <li><a id="intercettazioni-ambientali" class="link menu-item" data-page="Intercettazioni Ambientali" href="{% url 'individualEnviromentalTapping' %}">
+                            <i class="fa-solid fa-map-location-dot"></i> Intercettazioni ambientali
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                &nbsp;
+                <!-- Seconda voce con icona e sottomenu -->
+                <li>
+                    <a href="#" class="toggle-menu impostazioni-menu">
+                        <img src="/static/img/impostazioni.svg" alt="Impostazioni Icon" style="width: 30px; height: 30px; filter: brightness(0) invert(1); vertical-align: middle;"><span>Impostazioni</span>
+                        &nbsp;
+                        <i class="fas fa-chevron-right arrow" style="font-size: 12px; margin-left: 3px;"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#" class="toggle-menu modifica-grafo">
+                                <img src="/static/img/grafo2.svg" alt="Modifica Grafo Icon" style="width: 30px; height: 30px; filter: brightness(0) invert(1); vertical-align: middle;"><span>Modifica grafico</span>
+                                &nbsp;
+                                <i class="fas fa-chevron-right arrow" style="font-size: 12px;"></i>
+                            </a>
+                            <ul class="sub-submenu">
+                                <li class="layout-grafo">
+                                    <!-- Dropdown -->
+                                    <label class="label-grafico" for="account-options"> Grafico </label>
+                                    <select class="selectLayout" id="recipient-layout" aria-label="Default select example" onchange="changeGraphLayout();">
+                                        <option value="fcose" selected>Force Atlas</option>
+                                        <option value="circle">Cerchio</option>
+                                        <option value="dagre">Dagre</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <!-- Checkbox -->
+                                    <div>
+                                        <input type="checkbox" value="" onclick="checkedNodesAndEdges()" id="CheckNodes" checked>
+                                        <label for="CheckNodes">Nomi nodi</label><br>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="" onclick="checkedNodesAndEdges()" id="CheckEdges">
+                                        <label for="CheckEdges">Nomi archi</label><br>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="" onclick="checkedAnonymization()" id="CheckAnonymization">
+                                        <label for="CheckEdges">Anonimizzazione</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="li-timeline">
+                            <a id="crimini" class="link" href="{% url 'individualEnviromentalTapping' %}">
+                                <img src="/static/img/timeline.svg" alt="Timeline Icon" style="width: 30px; height: 30px; filter: brightness(0) invert(1); vertical-align: middle;"><span class="text-timeline">Timeline</span>
+                                <input style="margin-left: 8px;" type="checkbox" value="" onclick="checkTimeLineButton()" id="CheckTimeline" checked>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                &nbsp;
+                <!-- Terza voce con icona -->
+                <li>
+                    <a href="#" id="openTabLink" class="info-processo-menu">
+                        <img src="/static/img/info.svg" alt="Info Processo Icon" style="width: 30px; height: 30px; filter: brightness(0) invert(1); vertical-align: middle;"><span>Info Processo</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenuto -->
+        <div class="content">
+            <!--Barra di caricamento delle pagine-->
+            <div class="loadingContainer">
+                <div class="loadingContent"></div>
+            </div>
+
+            <!--Qui verranno inserite le varie pagine-->
+                {% block content %}
+                <div class="pageContent">
+                    <div id="content-area">
+                        
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!--Messaggi di notifica per le operazioni salvataggio
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto toast-header-content"></strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div> -->
+
+    <div id="tabContainer" class="tab hidden">
+        <div class="tabHeader">
+          <h4>Procedimento 26026/2003</h4>
+          <button id="closeTabBtn" class="closeTab" style="font-size: 16px; border: none;">X</button>
+        </div>
+        <div class="tabContent">
+            <h5>RICHIESTA PER L'APPLICAZIONE DI MISURE CAUTELARI PERSONALI E REALI <br> - artt. 272 e segg. c.p.p. -</h5>
+            &nbsp;
+            <p>
+                Il clan Cava, nato tra la fine degli anni '70 e l'inizio degli anni '80, si sviluppa nell'area del Vallo di Lauro, a Quindici, in provincia di Avellino. Inizialmente uniti ai Graziano, i due gruppi si dividono 
+                in seguito a divergenze interne, dando vita a una faida sanguinosa che continua per oltre vent'anni. Questa faida nasce dalla rivalità tra le due famiglie per il controllo del territorio e delle risorse economiche
+                aggravata dall'alleanza dei Cava con il clan Fabbrocino e dalla contrapposizione tra la Nuova Camorra Organizzata di Raffaele Cutolo e la Nuova Famiglia. Nel corso degli anni, i Cava e i Graziano si sono
+                scontrati in una lunga serie di omicidi e atti violenti, caratterizzati da numerosi agguati, tentativi di omicidio e atti di intimidazione contro civili e membri delle famiglie rivali. La faida ha visto
+                il coinvolgimento di esponenti di spicco delle due famiglie e ha portato a numerosi arresti e sequestri di armi, dimostrando la pervasività del controllo criminale sul territorio. Oltre alla violenza
+                tra clan, il gruppo Cava è coinvolto in estorsioni, minacce e traffico di armi, consolidando il proprio dominio economico e criminale. Le attività estorsive sono accompagnate da incendi dolosi
+                atti intimidatori contro aziende locali e traffico di stupefacenti contribuendo a mantenere un clima di paura e omertà. La loro influenza si estende anche alla politica locale, dove i clan
+                cercano di influenzare le amministrazioni comunali a loro vantaggio.
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+            // Riferimento alla checkbox e al contenitore della timeline
+            const checkbox = document.getElementById("CheckTimeline");
+            const timelineContainer = document.querySelector(".timeline-container");
+        
+            // Funzione per mostrare/nascondere la timeline
+            function toggleTimeline() {
+                if (checkbox.checked) {
+                    timelineContainer.style.display = "block"; // Mostra la timeline
+                } else {
+                    timelineContainer.style.display = "none"; // Nasconde la timeline
+                }
+            }
+        
+            // Aggiungi un event listener alla checkbox
+            checkbox.addEventListener("change", toggleTimeline);
+        
+            // Imposta lo stato iniziale
+            toggleTimeline();
+        });
+        
+
+        // Gestione del menu principale
+        document.querySelectorAll('.sidebar .toggle-menu').forEach(menu => {
+            menu.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Trova il sottomenu successivo
+                const submenu = this.nextElementSibling;
+
+                // Alterna lo stato del sottomenu
+                if (submenu && submenu.classList.contains('submenu')) {
+                    submenu.classList.toggle('active');
+
+                    // Ruota la freccia
+                    this.classList.toggle('active');
+                }
+
+                // Gestione per i sottomenu annidati
+                if (submenu && submenu.classList.contains('sub-submenu')) {
+                    submenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                }
+            });
+        });
+
+        //pop-up info processo
+        document.addEventListener('DOMContentLoaded', () => {
+            const openTabLink = document.getElementById('openTabLink');
+            const tabContainer = document.getElementById('tabContainer');
+            const closeTabBtn = document.getElementById('closeTabBtn');
+
+            openTabLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                tabContainer.style.display = 'block';
+            });
+
+            closeTabBtn.addEventListener('click', () => {
+                tabContainer.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

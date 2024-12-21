@@ -1,0 +1,192 @@
+body, html {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    color: white; /* Testo bianco */
+}
+
+ /* Sezione della welcome page */
+ .welcome-container {
+    height: 100vh;
+    width: 100vw; /* Assicura che la sezione prenda tutta la larghezza */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Colore di sfondo della sezione principale */
+    color: white;
+    text-align: center;
+}
+
+.logo {
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.btn-learn-more {
+    padding: 10px 20px;
+    font-size: 1.3rem;
+    background: transparent;
+    border: none;
+
+    transition: 600ms;
+}
+
+.btn-learn-more:hover{
+    background-color: rgba(83,93,107,0.6);
+}
+
+ 
+
+.info-section {
+    width: 90%; /* Larghezza adattiva per sembrare una card */
+    max-width: 1200px; /* Larghezza massima */
+    margin: 150px auto; /* Centra la card con margine verticale */
+    height: 500px; /* Adatta l'altezza al contenuto */
+    padding: 20px; /* Spazi interni per il contenuto */
+    background-color: white; /* Sfondo bianco */
+    border-radius: 15px; /* Arrotonda i bordi */
+    border: 1px solid #e0e0e0; /* Aggiungi un bordo sottile */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra per effetto card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.info-section h1 {
+    color: #464e5a; /* Colore del testo uguale a quello della prima sezione */
+}
+
+/* Transizione per lo scorrimento */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header della info-section */
+.info-header {
+    width: 100%;
+    height: 80px; /* Altezza dell'header */
+    background-color: #fff !important; /* Stesso colore della sezione principale */
+    color: #212121;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding: 0 100px;
+    line-height: 5rem !important;
+}
+
+
+.info-header .menu li a {
+    color: #212121; /* Link neri */
+    font-size: 20px;
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.info-header .menu li a:hover {
+    color: #a90302; /* Link neri */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.info-header img {
+    max-width: 200px; /* Dimensione del logo nell'header */
+}
+
+ /* Contenuto della info-section */
+ .info-content {
+    height: calc(100vh - 80px); /* Assicura che il contenuto prenda tutto lo spazio rimanente sotto l'header */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.info-content h1 {
+    color: #464e5a; /* Colore del testo uguale a quello della prima sezione */
+}
+
+/* Stile per il menu */
+.menu {
+    margin-left: auto;
+    list-style: none; /* Rimuove i punti dell'elenco */
+    display: flex; /* Disposizione orizzontale */
+    gap: 30px; /* Spazio tra le voci del menu */
+    margin-bottom: 0px;
+}
+
+.menu li {
+    color: white; /* Colore del testo del menu */
+}
+
+.menu a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: inherit; /* Usa il colore del testo del menu */
+    transition: color 300ms; /* Transizione per il colore */
+}
+
+.menu a:hover {
+    color: rgba(255, 255, 255, 0.7); /* Colore al passaggio del mouse */
+}
+
+/* Stili per il menu a tendina */
+.form-select {
+    width: 300px; /* Occupa tutta la larghezza della card */
+    border-radius: 8px; /* Aggiunge angoli arrotondati */
+    font-size: 1.25rem; /* Aumenta la dimensione del font */
+    padding: 10px; /* Aggiunge padding per un aspetto più spazioso */
+    outline: none;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: rgb(0 0 0 / 25%);
+    box-shadow: 0 0 0 0.15rem rgb(0 0 0 / 25%);
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #464e5a;
+	background-color:#768498;
+	border-radius:.5rem;
+	border:1px solid #768498;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:larger;
+    margin-top: 2rem;
+	padding:1rem 2rem;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+
+.myButton:hover {
+	background-color:#464e5a;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.custom-btn {
+    background-color: #a90302; /* Colore di sfondo personalizzato */
+    border-radius: 6px;
+    color: white; /* Colore del testo */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 11px;
+    padding-left: 11px;
+    transition: 500ms all;
+    text-decoration: none;
+}
+
+.custom-btn:hover {
+    background-color: #d65c5c; /* Colore di sfondo al passaggio del mouse */
+    color: white; /* Colore del testo al passaggio del mouse */
+}

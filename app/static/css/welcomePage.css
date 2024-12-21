@@ -1,0 +1,223 @@
+body, html {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    color: #333; /* Migliore contrasto rispetto al bianco */
+}
+ /* Sezione della welcome page */
+ .welcome-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw; /* Assicura che la sezione prenda tutta la larghezza */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Colore di sfondo della sezione principale */
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.logo {
+    max-width: 500px;
+    margin-bottom: 20px;
+    
+}
+.fa-arrow-down-long{
+    padding: 18px;
+    size: 30px;
+    font-size: 30px;
+    border-radius: 25px;
+    background: #ffffff;
+    color: #a90302;
+}
+.arrow-down{
+    position: absolute;
+    margin-top: 70vh;
+}
+
+.arrow-down i {
+    display: inline-block;
+    animation: bounce 1s infinite; /* Animazione continua */
+}
+
+/* Definizione dell'animazione */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Posizione iniziale e finale */
+    }
+    50% {
+        transform: translateY(10px); /* Spostamento verso il basso */
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        max-width: 300px; /* Riduci la dimensione del logo */
+    }
+
+    .icon-container i {
+        font-size: 2rem;
+    }
+
+    .icon-label {
+        font-size: 0.7rem;
+    }
+}
+
+
+
+/* Sezione 4 icone */
+.info-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f4f4f4; /* Sfondo chiaro */
+    padding: 20px;
+    text-align: center;
+    flex-direction: column;
+}
+.text-content {
+    margin-top: 60px;
+    padding-top: 30px;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+}
+
+.section-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+/* Riga delle icone */
+.icon-row {
+    position: absolute;
+    top: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px; /* Spaziatura tra le icone */
+    flex-wrap: wrap;
+    flex-grow: 1; /* Permette alle icone di occupare spazio disponibile */
+    margin-top: auto;
+}
+
+/* Stile base per tutte le icone */
+.icon-box {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Rimuove la sottolineatura per i link */
+}
+.icon-box .icon-svg{
+    width: 50px; /* Stessa dimensione delle altre icone */
+    height: auto; /* Mantiene le proporzioni */
+    margin-bottom: 10.5px; /* Allineamento al testo */
+    filter: grayscale(100%); /* Rende l'icona grigia per seguire lo stile 'disabled' */
+    
+}
+.icon-box i {
+    font-size: 50px; /* Dimensione icona */
+    margin-bottom: 10px;
+}
+
+.icon-box p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Stile per le icone cliccabili */
+.icon-box.active i {
+    color: #a90302; /* Colore rosso */
+    cursor: pointer;
+}
+
+.icon-box.active:hover i {
+    transform: scale(1.1); /* Ingrandimento al passaggio del mouse */
+    transition: transform 0.3s ease;
+}
+
+/* Stile per le icone non cliccabili */
+.icon-box.disabled i {
+    color: #999; /* Colore grigio */
+}
+
+.icon-box.disabled p {
+    color: #999; /* Testo grigio per le icone disabilitate */
+}
+
+
+.icon-box .tooltip {
+    visibility: hidden; /* Nasconde la descrizione di default */
+    background-color: rgba(0, 0, 0, 0.75); /* Colore di sfondo del tooltip */
+    color: white; /* Colore del testo del tooltip */
+    text-align: left; /* Allinea il testo a sinistra */
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: 100%; /* Posiziona il tooltip sotto il testo */
+    left: 50%;
+    transform: translateX(-50%); /* Centra il tooltip rispetto all'icona */
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+    min-width: 300px;
+    max-width: 200px;
+    width: auto;
+    word-wrap: break-word;
+    font-size: 0.90rem;
+}
+
+.icon-box .more-text {
+    display: none; /* Nasconde il testo completo di default */
+    
+}
+
+.icon-box .more-link {
+    display: inline;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #a90302; /* Colore per il link */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icon-box .more-link:hover {
+    color: #f44336; /* Colore al passaggio del mouse sul link */
+}
+
+/* Mostra il tooltip quando si passa sopra l'icona */
+.icon-box:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Mostra la descrizione completa quando si clicca su "More" */
+.icon-box.active .tooltip .more-text {
+    display: inline; /* Mostra il testo completo */
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .icon-row {
+        flex-direction: column; /* Posiziona le icone in colonna */
+        gap: 20px; /* Riduce la spaziatura */
+    }
+
+    .icon-box i {
+        font-size: 40px; /* Ridimensiona le icone */
+    }
+}

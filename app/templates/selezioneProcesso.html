@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeMiner</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/selezioneProcesso.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    {% include 'navbar.html' %}
+
+    <div id="info-section" class="info-section">
+
+        <div class="container vh-100">
+            <div class="row align-items-center justify-content-center h-100" style="padding-top: 0px;">
+                
+                <div class="col-12 col-md-6 text-center">
+                    <h2 style="color: #212121;">Seleziona un processo cautelare</h2>
+                    <div class="mx-auto">
+                        <label for="optionsSelect" class="form-label" style="color: #212121;">Scegli un'opzione:</label>
+                        <select class="form-select form-select-lg mx-auto" id="optionsSelect">
+                            <option value="option1">Clan Cava</option>
+                            <option value="option2">Clan Abate</option>
+                            <option value="option3">Clan Tortora</option>
+                            <option value="" selected disabled hidden>Seleziona processo</option>
+                        </select>
+
+                        <br><br><a href="{% url 'individualWiretaps' %}" class="custom-btn">SELEZIONA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const selectElement = document.getElementById('optionsSelect');
+    
+        // Quando l'utente clicca sulla select
+        selectElement.addEventListener('click', function() {
+            const firstOption = this.querySelector('option[disabled]');
+            // Nascondi l'opzione disabilitata una volta che l'utente clicca sulla select
+            firstOption.style.display = 'none';
+        });
+    
+        // Se l'utente cambia selezione, ripristina l'opzione disabilitata
+        selectElement.addEventListener('blur', function() {
+            const firstOption = this.querySelector('option[disabled]');
+            firstOption.style.display = 'block';
+        });
+    </script>
+
+    <!-- Bootstrap JS (opzionale, se usi componenti JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

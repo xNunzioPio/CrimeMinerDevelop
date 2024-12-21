@@ -1,0 +1,194 @@
+/* Reset di base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+
+
+
+
+/* Layout principale */
+.main {
+    display: flex;
+    margin-top: 60px; /* Spazio per la navbar */
+    height: calc(100vh - 60px); /* Altezza disponibile sotto la navbar */
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #464e5a;
+    border-top-right-radius: 15px;
+    margin-top: 15px;
+
+    box-shadow: 0 12px 10px 0 rgb(0, 0, 0, 0.6);
+}
+/* Stile base */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    position: relative;
+    margin-top: -9px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.sidebar ul li a i {
+    font-size: 23px;
+    margin-right: 16px;
+}
+
+/* Stile della freccia */
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+/* Rotazione della freccia quando il menu è attivo */
+.sidebar ul li a.active .arrow {
+    transform: rotate(90deg);
+}
+
+/* Sottomenu nascosto di default */
+.sidebar ul .submenu,
+.sidebar ul .sub-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    list-style-type: none;
+    padding-left: 12px;
+    background: #464e5a;
+    border-left: none;
+}
+
+/* Mostra il sottomenu quando attivo */
+.sidebar ul .submenu.active,
+.sidebar ul .sub-submenu.active {
+    max-height: 500px; /* Imposta un limite massimo per l'espansione */
+}
+
+
+/* Stile per dropdown e checkbox */
+.sub-submenu label {
+    margin-bottom: 5px;
+    display: block;
+    color: #fff;
+}
+
+.sub-submenu select {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sub-submenu div {
+    display: flex;
+    align-items: center;
+    margin-bottom: -8px;
+}
+
+.sub-submenu input[type="checkbox"] {
+    margin-right: 8px;
+}
+.sub-submenu li{
+    margin-left: 40px;
+}
+.sub-submenu label.label-grafico{
+    margin-top: 4px;
+    font-size: 15px;
+    margin-bottom: -5px;
+}
+
+/* Contenuto */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.content h1 {
+    margin-bottom: 20px;
+}
+
+.content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.tab {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+  }
+  .tabHeader {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 13px;
+    padding-left: 15px;
+    padding-right: 25px;
+    padding-bottom: 11px;
+    background: #f1f1f1;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  .tabContent {
+    padding: 15px;
+  }
+  .hidden {
+    display: none;
+  }
+  .impostazioni-menu{
+    margin-top: -30px;
+  }
+  .info-processo-menu{
+    margin-top: -30px;
+  }
+  .info-processo-menu span{
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .info-processo-menu img{
+    margin-top: 3px;
+  }
+  .toggle-menu span{
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .toggle-menu img{
+    margin-top: 3px;
+  }
+  .modifica-grafo span{
+    margin-left: 5px;
+    font-size: 18px;
+  }
+ .text-timeline{
+    margin-left: 7px;
+  }
+  .submenu li.li-timeline{
+    margin-left: 3px;
+    margin-top: 2px;
+  }
+ 

@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeMiner</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/welcomePage.css' %}">
+    <script type="text/javascript" src="{% static 'js/welcomePage.js' %}"></script>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+
+    <section id="animatedCard"> 
+        <div class="welcome-container">
+            <!-- Logo Centrale -->
+            <img src="{% static 'img/logo.png' %}" alt="Crime Miner Logo" class="logo">
+            <!-- Bottone Learn More -->
+            <a href="#info-section" class="btn btn-learn-more arrow-down">
+                <i class="fa-solid fa-arrow-down-long"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Sezione Icone -->
+    <section id="info-section" class="info-container">
+
+        <div class="text-content">
+            <h2 class="section-title">Esplora tutte le funzionalità</h2>
+            <p class="section-description">Scopri le funzionalità di CrimeMiner per analizzare, gestire e visualizzare i dati in modo efficace e intuitivo.</p>
+        </div>
+        
+        <div class="icon-row">
+            <!-- Prima icona cliccabile (Esplora) -->
+            <a href="{% url 'selezioneProcesso' %}" class="icon-box active">
+                <i class="fa-solid fa-share-nodes"></i>
+                <p>Explore</p>
+                <span class="tooltip">
+                    Esplora tutte le funzionalità offerte dall'applicazione, inclusi strumenti per analizzare i dati, grafi e molto altro.
+                    <span class="more-text"></span>
+                </span>
+            </a>
+            <!-- Icone non cliccabili -->
+            <div class="icon-box disabled">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <p>Editor</p>
+                <span class="tooltip">
+                    CrimeMiner, consente di acquisire e caricare automaticamente i dati contenuti in un file PDF direttamente nel database. 
+                    <span class="more-text">L'utente può fornire un file PDF come input e, attraverso un processo di estrazione dei dati, il sistema acquisisce i dati, li organizza e li carica in modo strutturato nel database, consentendo un facile accesso e gestione dei dati. Questa funzionalità semplifica il trasferimento di dati da documenti PDF a un sistema digitale, riducendo il rischio di errori manuali e aumentando l'efficienza operativa.</span>
+                    <a href="#" class="more-link"> more...</a>
+                </span>
+            </div>
+            <div class="icon-box disabled">
+                <img src="/app/static/img/ia.svg" alt="Icona IA" class="icon-svg">
+                <p>AI</p>
+                <span class="tooltip">
+                    CrimeMiner, attraverso l'utilizzo dell'intelligenza artificiale, analizza le conversazioni tra individui e ne identifica le emozioni associate. 
+                    <span class="more-text"> Esaminando il contenuto della conversazione, il sistema applica algoritmi avanzati di analisi del linguaggio naturale (NLP) e riconoscimento delle emozioni per determinare e associare emozioni specifiche (come felicità, tristezza, rabbia, sorpresa, ecc.) a ciascun partecipante. </span>
+                    <a href="#" class="more-link"> more...</a>
+                </span>
+            </div>
+            <div class="icon-box disabled">
+                <i class="fa-solid fa-file-export"></i>
+                <p>Report</p>
+                <span class="tooltip">
+                    CrimeMiner offre la funzionalità di generare report dettagliati sui dati analizzati, fornendo un riepilogo completo delle informazioni estratte e delle analisi effettuate.
+                    <span class="more-text"> Ogni report può essere personalizzato in base alle esigenze dell'utente e contiene una sintesi delle scoperte, delle metriche rilevanti e delle visualizzazioni. Inoltre, i report generati possono essere scaricati in vari formati (ad esempio PDF o CSV), consentendo una facile condivisione e archiviazione delle informazioni per ulteriori analisi o per uso investigativo.</span>
+                    <a href="#" class="more-link"> more...</a>
+                </span>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        document.querySelector('.arrow-down').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('#info-section').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.more-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Previene il comportamento di default del link
+                let tooltip = link.closest('.tooltip'); // Trova il tooltip più vicino
+                let moreText = tooltip.querySelector('.more-text'); // Trova la parte di testo da mostrare
+                moreText.style.display = (moreText.style.display === 'inline') ? 'none' : 'inline'; // Alterna tra mostrare e nascondere
+                link.textContent = (moreText.style.display === 'inline') ? ' ...less' : ' more...'; // Cambia il testo del link
+            });
+        });
+    </script>
+
+
+
+
+
+    <!--
+    <section id="animatedCard">
+        <div id="toggleCard" class="welcome-container">
+            <img src="{% static 'img/logo.png' %}" alt="Crime Miner Logo" class="logo">
+        <a href="#info-section" class="btn btn-learn-more arrow-down">
+            <i class="fa-solid fa-arrow-down-long"></i>
+        </a>
+        </div>
+    </section>
+    
+    <div id="info-section" class="info-section">
+        
+        <div class="container vh-100 icon-section">
+        
+            <div class="row align-items-center justify-content-center h-100" style="padding-top: 0px;">
+                    
+                <div class="col-12 d-flex justify-content-center gap-3">
+
+                     <div class="icon-container">
+                        <a href="{% url 'selezioneProcesso' %}"><i class="fa-solid fa-diagram-project fs-2 icon-active"></i></a> 
+                        <span class="icon-label">Explore</span>
+                     </div>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-pen-to-square fs-2 icon-disabled"></i> 
+                        <span class="icon-label">Editor</span>
+                    </div>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-brain fs-2 icon-disabled"></i> 
+                        <span class="icon-label">IA</span>
+                    </div>
+                    <div class="icon-container">
+                        <i class="fa-solid fa-question fs-2 icon-disabled"></i> 
+                        <span class="icon-label">da decidere</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleMenu() {
+            const header = document.querySelector('.info-header');
+            header.classList.toggle('active');
+        }
+    </script>-->
+
+</body>
+</html>

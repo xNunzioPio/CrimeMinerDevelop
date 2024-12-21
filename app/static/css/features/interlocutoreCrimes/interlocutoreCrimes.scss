@@ -1,0 +1,200 @@
+$varDeleteModal: #a30404;
+$varBackColor: #cfcfcf;
+$varColor: white;
+
+.accordion{
+    &NumberNodesEdges{
+        &Interlocutor,&Relation{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.date-box, .filter-box, .nome-box, .combined-filter-box {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.date-box h3, .filter-box h3, .nome-box h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  
+  #date-form, #filter-form, #nome-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #date-form label, #filter-form label {
+    margin: 0.5rem 0 0.2rem;
+  }
+  
+  #date-form input, #filter-form input, .nome-box input[type="text"] {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  #date-form button, #filter-form button, .nome-box button, .combined-filter-box button, .combine-filter-button button {
+    margin-top: 1rem;
+    align-self: flex-start;
+    padding: 0.5rem 1rem;
+    background-color: #c78af0;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  #date-form button:hover, #filter-form button:hover, .nome-box button:hover, .combined-filter-box button:hover, .combine-filter-button button:hover{
+    background-color: #7151a5;
+  }
+  
+  // Stile per le opzioni di filtro
+  .filter-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .filter-option input {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .date-box h6, .filter-box h6, .nome-box h6 {
+    margin-top: 0;
+    font-size: 0.9rem;
+  }
+
+.infoInterlocutorCrimes{
+    &NodeInterlocutor{
+        display: none;
+        flex-direction: column;
+        max-height: 20rem;
+                padding-right: 0.5rem;
+                overflow-y: auto;
+                overflow-x: auto;
+
+                &::-webkit-scrollbar-track{
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                  border-radius: 10px;
+                  background-color: auto;
+                }
+      
+                &::-webkit-scrollbar {
+                    width: 12px;
+                    background-color: auto;
+                }
+        
+                &::-webkit-scrollbar-thumb{
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #cfcfcf;
+                }
+        
+        &Id,&Name,&Birth,&Nation,&Province,&City,&Residence,&Cap,&Address,&Emotion,&Reato,&Norme,&Luogo,&Condanna,&Imputati,&Total,&Frasi{
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        &IdTitle,&NameTitle,&BirthTitle,&NationTitle,&ProvinceTitle,&CityTitle,&ResidenceTitle,&CapTitle,&AddressTitle,&EmotionTitle,&ReatoTitle,&NormeTitle,&LuogoTitle,&CondannaTitle,&ImputatiTitle,&TotalTitle,&FrasiTitle{
+          font-weight: bold;
+        }
+            &FrasiContent{
+              max-height: 20rem;
+                padding-right: 0.5rem;
+                overflow-y: auto;
+                overflow-x: auto;
+
+                &::-webkit-scrollbar-track{
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                  border-radius: 10px;
+                  background-color: auto;
+                }
+      
+                &::-webkit-scrollbar {
+                    width: 12px;
+                    background-color: auto;
+                }
+        
+                &::-webkit-scrollbar-thumb{
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #cfcfcf;
+                }
+            }
+    }
+
+    &Edge{
+        display: none;
+        flex-direction: column;
+        max-height: 20rem;
+                padding-right: 0.5rem;
+                overflow-y: auto;
+                overflow-x: auto;
+
+                &::-webkit-scrollbar-track{
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                  border-radius: 10px;
+                  background-color: auto;
+                }
+      
+                &::-webkit-scrollbar {
+                    width: 12px;
+                    background-color: auto;
+                }
+        
+                &::-webkit-scrollbar-thumb{
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #cfcfcf;
+                }
+        
+        &Id,&Interlocutor,&Target,&IdConv,&Conversation,&Date,&InterlocutorList,&Luogo,&NumberConv,&HourConv,&Type{
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        &IdTitle,&InterlocutorTitle,&TargetTitle,&IdConvTitle,&ConversationTitle,&DateTitle,&InterlocutorListTitle,&LuogoTitle,&NumberConvTitle,&HourConvTitle,&TypeTitle{
+          font-weight: bold;
+        }
+
+            &ConversationContent{
+                max-height: 20rem;
+                padding-right: 0.5rem;
+                overflow-y: auto;
+                overflow-x: auto;
+
+                &::-webkit-scrollbar-track{
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                  border-radius: 10px;
+                  background-color: auto;
+                }
+      
+                &::-webkit-scrollbar {
+                    width: 12px;
+                    background-color: auto;
+                }
+        
+                &::-webkit-scrollbar-thumb{
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #cfcfcf;
+                }
+            
+            }
+    }
+
+    &Not{
+        text-align: center;
+        padding: 1rem;
+        font-weight: bold;
+    }
+}
+

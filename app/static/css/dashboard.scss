@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-y: visible;
+}
+
+.pageContainer {
+    width: calc(100% - 275px); /* Calcola la larghezza sottraendo la sidebar */
+    margin-left: 275px; /* Spazio per la sidebar */
+    margin-top: 3.5rem; /* Spazio per la navbar */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.navbar {
+    background-color: #464e5a;
+    height: 3.5rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbarText {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Helvetica";
+    color: #ff0000;
+    font-size: larger;
+}
+
+.navbarTextLink {
+    display: flex;
+    color: white;
+    text-decoration: none;
+    justify-content: center !important;
+}
+
+.navbarTextLink1 {
+    margin-left: 800px;
+    display: flex;
+    color: white;
+    text-decoration: none;
+}
+
+.navbarTextLink2 {
+    margin-right: -20px;
+    margin-left: 100px;
+    display: flex;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbarTextLink3 {
+    margin-left: 100px;
+    display: flex;
+    color: #fff;
+    text-decoration: none !important;
+    margin-right: 30px;
+}
+
+.navbarTextMenu {
+    margin-left: auto;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 0px;
+}
+
+.navbarLogo {
+    width: 250px;
+    margin: 10px;
+}
+
+.container-link {
+    display: flex;
+    margin-left: 0px;
+    background-color: #464e5a;
+    align-items: center;
+    width: 1630px;
+    height: 50px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 275px;
+    background-color: #464e5a;
+    z-index: 999;
+}
+
+.sidebarUl {
+    padding-left: 0;
+    margin-top: 2.5rem;
+    list-style: none;
+    align-items: flex-start;
+}
+
+.sidebarUl-1 {
+    padding-left: 0;
+    margin-top: -5rem;
+    list-style: none;
+    align-items: flex-start;
+}
+
+.sidebarIl {
+    padding-left: 0;
+    margin-top: -4rem;
+    list-style: none;
+    align-items: flex-start;
+}
+
+.sidebarUl li {
+    display: block; /* Assicura che ciascun elemento si disponga in colonna */
+    width: 100%; /* Fa in modo che occupi tutta la larghezza disponibile */
+}
+
+.sidebarIl li {
+    display: block;
+    width: 100%;
+}
+
+.sidebarItem {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 0rem; /* Riduce il padding a sinistra per allineare gli elementi più a sinistra */
+    text-decoration: none;
+    color: rgb(255 250 250 / 65%);
+    transition: color .15s ease-in-out;
+}
+
+.sidebarItem:hover {
+    color: #ffffff;
+    border: 2px solid #d60000;
+    border-radius: 4px;
+}
+
+.sidebarItemGrafo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 0rem; /* Riduce il padding a sinistra per allineare gli elementi più a sinistra */
+    text-decoration: none;
+    color: rgb(255 250 250 / 65%);
+    transition: color .15s ease-in-out;
+}
+
+.sidebarFirst {
+    display: block; /* Permette alla dropdown di espandersi verticalmente */
+    width: 100%;
+    padding: 0.75rem 0.75rem;
+    color: #ffffff;
+    transition: color .15s ease-in-out;
+}
+
+.sidebarSecond {
+    display: block; /* Permette alla dropdown di espandersi verticalmente */
+    width: 100%;
+    padding: 5rem 0.75rem;
+    color: #ffffff;
+    transition: color .15s ease-in-out;
+}
+
+.sidebarThird {
+    display: block; /* Permette alla dropdown di espandersi verticalmente */
+    width: 100%;
+    padding: 0.75rem 0.75rem;
+    color: #ffffff;
+    transition: color .15s ease-in-out;
+}
+
+.sidebarIcon {
+    width: 2rem;
+    margin: 15px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header della info-section */
+.info-header {
+    width: 100%;
+    height: 80px; /* Altezza dell'header */
+    background-color: #464e5a; /* Stesso colore della sezione principale */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding: 0 150px;
+}
+
+.info-header img {
+    max-width: 150px; /* Dimensione del logo nell'header */
+}
+
+/* Stile per il menu */
+.menu {
+    margin-left: auto;
+    list-style: none; /* Rimuove i punti dell'elenco */
+    display: flex; /* Disposizione orizzontale */
+    gap: 30px; /* Spazio tra le voci del menu */
+    margin-bottom: 0px;
+}
+
+.menu li {
+    color: white; /* Colore del testo del menu */
+}
+
+.menu a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: inherit; /* Usa il colore del testo del menu */
+    transition: color 300ms; /* Transizione per il colore */
+}
+
+.menu a:hover {
+    color: rgba(255, 255, 255, 0.7); /* Colore al passaggio del mouse */
+}
+
+/* Sezione di destinazione */
+.info-section {
+    height: 100vh;
+    width: 100vw; /* Assicura che la sezione prenda tutta la larghezza */
+    flex-direction: column;
+    background-color: white; /* Sfondo bianco */
+    display: flex;
+    text-align: center;
+}
+
+.info-section h1 {
+    color: #464e5a; /* Colore del testo uguale a quello della prima sezione */
+}
+
+.tohidden {
+    display: block;
+}
+
+#content-area {
+    margin-top: 50px !important;
+    padding: 20px;
+    background-color: #ffff;
+    max-height: 800px !important;
+    max-width: 1600px !important;
+}
+
+#content-area pre {
+    margin-top: 25px;
+    color: black;
+    text-align: left;
+    font-size: 16px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 35px;
+}
+
+#content-area h4 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sidebarFirst .dropdown-content {
+    display: none;
+    list-style: none;
+    padding-left: 0.75rem; /* Indenta leggermente gli elementi interni */
+}
+
+.sidebarFirst .dropdown-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebarFirst .dropdown-arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+}
+
+.sidebarFirst.open .dropdown-arrow {
+    transform: rotate(0deg); /* Ruota la freccia quando aperta */
+}
+
+.sidebarFirst.open .dropdown-content {
+    display: block; /* Mostra i contenuti solo quando il dropdown è aperto */
+}
+
+.sidebarSecond .dropdown-content {
+    display: none;
+    list-style: none;
+    padding-left: 1.75rem; /* Indenta leggermente gli elementi interni */
+}
+
+.sidebarSecond .dropdown-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebarSecond .dropdown-arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+}
+
+.sidebarSecond.open .dropdown-arrow {
+    transform: rotate(0deg); /* Ruota la freccia quando aperta */
+}
+
+.sidebarSecond.open .dropdown-content {
+    display: block; /* Mostra i contenuti solo quando il dropdown è aperto */
+}
+
+.sidebarThird .dropdown-content {
+    display: none !important;
+    list-style: none;
+    padding-left: 1.75rem; /* Indenta leggermente gli elementi interni */
+}
+
+.sidebarThird .dropdown-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebarThird .dropdown-arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg) !important;
+}
+
+.sidebarThird.open .dropdown-arrow {
+    transform: rotate(0deg) !important; /* Ruota la freccia quando aperta */
+}
+
+.sidebarThird.open .dropdown-content {
+    display: block !important; /* Mostra i contenuti solo quando il dropdown è aperto */
+}
+
+
+.sidebarFourth .dropdown-content {
+    display: none !important;
+    list-style: none;
+    padding-left: 1.75rem; /* Indenta leggermente gli elementi interni */
+}
+
+.sidebarFourth .dropdown-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebarFourth .dropdown-arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg) !important;
+}
+
+.sidebarFourth.open .dropdown-arrow {
+    transform: rotate(0deg) !important; /* Ruota la freccia quando aperta */
+}
+
+.sidebarFourth.open .dropdown-content {
+    display: block !important; /* Mostra i contenuti solo quando il dropdown è aperto */
+}
+
+.tab {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+  }
+  .tabHeader {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 13px;
+    padding-left: 15px;
+    padding-right: 25px;
+    padding-bottom: 11px;
+    background: #f1f1f1;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  .tabContent {
+    padding: 15px;
+  }
+  .hidden {
+    display: none;
+  }
+
+  .link-info-processo {
+    color: white; /* Colore del testo */
+    text-decoration: none; /* Rimuove la sottolineatura */
+  }
+
+  .info-header {
+    width: 100%;
+    height: 80px; /* Altezza dell'header */
+    background-color: #fff !important; /* Stesso colore della sezione principale */
+    color: #212121;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding: 0 100px;
+    line-height: 5rem !important;
+}
+
+
+.info-header .menu li a {
+    color: #212121; /* Link neri */
+    font-size: 20px;
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.info-header .menu li a:hover {
+    color: #a90302; /* Link neri */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.info-header img {
+    max-width: 200px; /* Dimensione del logo nell'header */
+}
+
+.main-container {
+    margin-left: 250px; /* Spazio per la sidebar */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    margin-top: 60px; /* Spazio per la navbar */
+    height: calc(100vh - 60px); /* Altezza disponibile sotto la navbar */
+}

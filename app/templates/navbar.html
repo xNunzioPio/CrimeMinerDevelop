@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeMiner</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="{% url 'welcomePage' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" />
+            </a>
+        </div>
+        <ul>
+            <li><a href="{% url 'team' %}#progetto">About</a></li>
+            <li><a href="{% url 'team' %}#team">Chi Siamo</a></li>
+            <li><a href="{% url 'team' %}#contatti">Contatti</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+{% extends 'dashboard.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/features/interlocutoreCrimes/interlocutoreCrimes.css' %}">
+<script type="text/javascript" src="{% static 'js/features/interlocutoreCrimes.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex w-100 bd-highlight">
+    <div class="cyContainer p-2 flex-grow-1 bd-highlight">
+      <div class="cyContent" id="graph-container">
+      </div>
+    </div>
+    <div id="no-combination-message" style="display: none;">
+      <h5 style="text-align:left">Nessuna combinazione trovata. </h5>
+    </div>
+    <div class="accordionContainer p-2 bd-highlight">
+      <div class="combined-filter-box">
+          <!-- Filtro Per Data  -->
+            <div class="date-box">
+                <h3>Seleziona le date</h3>
+                <h6>filtra le conversazioni per data</h6>
+                <form id="date-form">
+                    <label for="start-date">Data di inizio:</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                    <label for="end-date">Data di fine:</label>
+                    <input type="date" id="end-date" name="end-date" required>
+                    <button type="submit">Invia</button>
+                </form>
+            </div>
+
+            <!-- Filtro Per Nome  -->
+            <div class="nome-box">
+                <h3>Inserire il nome dell'interlocutore</h3>
+                <h6>ricerca l'interlocutore di interesse e le sue relazioni</h6>
+                <form id="nome-form">
+                  <input type="text" id="nome" name="nome" placeholder="Inserisci nome">
+                  <button type="submit">Cerca</button>
+                </form>
+            </div>
+
+            <!-- Filtro Emozione  -->
+            <div class="filter-box">
+                <h3>Filtra per emozione</h3>
+                <h6>restituisce gli interocutori con l'emozione desiderata</h6>
+                <form id="filter-form">
+                    <div class="filter-option">
+                        <input type="radio" id="anger" name="emotion" value="anger" required>
+                        <label for="anger">Rabbia</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="joy" name="emotion" value="joy">
+                        <label for="joy">Gioia</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="sadness" name="emotion" value="sadness">
+                        <label for="sadness">Tristezza</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="fear" name="emotion" value="fear">
+                        <label for="fear">Paura</label>
+                    </div>
+                    <div class="filter-option">
+                      <input type="radio" id="neutrale" name="emotion" value="neutrale">
+                      <label for="neutrale">Neutrale</label>
+                  </div>
+                    <button type="submit">Filtra</button>
+                </form>
+                <button id="deselect-radio">Deseleziona</button>
+          </div>
+        <button type="submit" id="combine-filter-button">Combina Filtri</button>
+    </div>
+
+      <!-- Properties -->
+      <div class="accordion">
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-properties" class="accordionCheckboxLabel"/>
+          <label for="item-properties" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="information-circle" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonOne">Proprietà</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <div class="accordionNumberNodesEdges">
+                <div class="accordionNumberNodesEdgesInterlocutor">
+                  <div class="accordionNumberNodesEdgesInterlocutorTitle">Interlocutori</div>
+                  <div class="accordionNumberNodesEdgesInterlocutorContent"></div>
+                </div>
+                <!--<hr></hr>-->
+                <div class="accordionNumberNodesEdgesRelation">
+                  <div class="accordionNumberNodesEdgesRelationTitle">Relazioni Interlocutori</div>
+                  <div class="accordionNumberNodesEdgesRelationContent"></div>
+                </div>
+                <hr></hr>
+                <div class="accordionNumberNodesEdgesNodes">
+                  <div class="accordionNumberNodesEdgesNodesTitle">Totale Nodi</div>
+                  <div class="accordionNumberNodesEdgesNodesContent"></div>
+                </div>
+                <!--<hr></hr>-->
+                <div class="accordionNumberNodesEdgesEdges">
+                  <div class="accordionNumberNodesEdgesEdgesTitle">Totale Archi</div>
+                  <div class="accordionNumberNodesEdgesEdgesContent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details --> 
+      <div class="accordion">
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-details" class="accordionCheckboxLabel"/>
+          <label for="item-details" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="color-wand-outline" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonTwo">Dettagli</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+
+              <!--Interlocutore-->
+              <div class="infoInterlocutorCrimesNodeInterlocutor">
+                <div class="infoInterlocutorCrimesNodeInterlocutorId d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorIdTitle">Identificativo</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorIdContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorName d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNameTitle">Nome</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNameContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorEmotion d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorEmotionTitle">Emozione</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorEmotionContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorReato d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorReatoTitle">Nome del Reato </div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorReatoContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorNorme d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNormeTitle">Norme Di Riferimento </div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNormeContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorBirth d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorBirthTitle">Data Nascita</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorBirthContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorNation d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNationTitle">Paese</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorNationContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorProvince d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorProvinceTitle">Provincia</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorProvinceContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorResidence d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorCityTitle">Città</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorResidenceContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorCap d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorCapTitle">Cap</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorCapContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorAddress d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorAddressTitle">Indirizzo</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorAddressContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorLuogo d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorLuogoTitle">Luogo di nascita</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorLuogoContent"></div>
+                </div>
+                 <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorFrasi d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorFrasiTitle">Frasi Dette</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorFrasiContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorCondanna d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorCondannaTitle">Mesi di condanna</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorCondannaContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorImputati d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorImputatiTitle">Mesi Imputati</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorImputatiContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorTotal d-flex">
+                  <div class="infoInterlocutorCrimesNodeInterlocutorTotalTitle">Mesi Totali</div>
+                  <div class="infoInterlocutorCrimesNodeInterlocutorTotalContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesNodeInterlocutorButton d-flex flex-end">
+                </div>
+              </div>
+
+              <!--Archi Interlocutore/Interlocutore-->
+              <div class="infoInterlocutorCrimesEdge">
+                <div class="infoInterlocutorCrimesEdgeId d-flex">
+                  <div class="infoInterlocutorCrimesEdgeIdTitle">Identificativo</div>
+                  <div class="infoInterlocutorCrimesEdgeIdContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeInterlocutor d-flex">
+                  <div class="infoInterlocutorCrimesEdgeInterlocutorTitle">Chiamante</div>
+                  <div class="infoInterlocutorCrimesEdgeInterlocutorContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeTarget d-flex">
+                  <div class="infoInterlocutorCrimesEdgeTargetTitle">Chiamato</div>
+                  <div class="infoInterlocutorCrimesEdgeTargetContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeIdConv d-flex">
+                  <div class="infoInterlocutorCrimesEdgeIdConvTitle">Identificativo Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeIdConvContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeConversation d-flex">
+                  <div class="infoInterlocutorCrimesEdgeConversationTitle">Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeConversationContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeDate d-flex">
+                  <div class="infoInterlocutorCrimesEdgeDateTitle">Data Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeDateContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeInterlocutorList d-flex">
+                  <div class="infoInterlocutorCrimesEdgeInterlocutorListTitle">Lista Interlocutori</div>
+                  <div class="infoInterlocutorCrimesEdgeInterlocutorListContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeLuogo d-flex">
+                  <div class="infoInterlocutorCrimesEdgeLuogoTitle">Luogo</div>
+                  <div class="infoInterlocutorCrimesEdgeLuogoContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeNumberConv d-flex">
+                  <div class="infoInterlocutorCrimesEdgeNumberConvTitle">Numero Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeNumberConvContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeHourConv d-flex">
+                  <div class="infoInterlocutorCrimesEdgeHourConvTitle">Orario Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeHourConvContent"></div>
+                </div>
+                <hr></hr>
+                <div class="infoInterlocutorCrimesEdgeType d-flex">
+                  <div class="infoInterlocutorCrimesEdgeTypeTitle">Tipologia Conversazione</div>
+                  <div class="infoInterlocutorCrimesEdgeTypeContent"></div>
+                </div>
+                <div class="infoInterlocutorCrimesEdgeButton d-flex flex-end">
+                </div>
+              </div>
+
+              <div class="infoInterlocutorCrimesNot">
+                Non ci sono informazioni da visualizzare al momento
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="accordion">
+        <div class="accordion-item accordion-item-graph">
+          <input type="checkbox" id="item-settings" class="accordionCheckboxLabel"/>
+          <label for="item-settings" class="accordion-header">
+            <span class="accordion-header-container">
+              <div class="accordion-header-container-icon">
+                <ion-icon name="cog" class="accordion-icon"></ion-icon>
+              </div>
+              <div class="accordionButtonThree">Impostazioni</div>
+            </span>
+            <span class="accordionArrow accordionIconToggleRight">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill accordionIconToggleRightSvg" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+              </svg>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <div class="d-flex flex-wrap accordionCheckboxNodeEdge">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="nome" onclick="checkedNodesAndEdgesInterlocutorCrimes()" id="CheckNodes" checked>
+                  <label class="form-check-label" for="CheckNodes">
+                    Nomi Nodi
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="edgeId" onclick="checkedNodesAndEdgesInterlocutorCrimes()" id="CheckEdges">
+                  <label class="form-check-label" for="CheckEdges">
+                    Nomi Archi
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" onclick="checkedAnonymizationInterlocutorCrimes()" id="CheckAnonymization">
+                  <label class="form-check-label" for="CheckEdges">
+                    Anonimizzazione
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex accordionLayoutMetrics">
+                <div class="d-flex flex-column">
+                  <div for="recipient-layout" class="col-form-label">
+                    Layout
+                  </div>
+                  <select class="form-select selectLayout" aria-label="Default select example" id="recipient-layout" onchange="changeLayoutInterlocutorCrimes();">
+                    <option value="circle" selected>Cerchio</option>
+                    <option value="dagre">Dagre</option>
+                    <option value="fcose">Force Atlas</option>
+                  </select>
+                </div>
+                <div class="d-flex flex-column">
+                  <div for="recipient-metrics" class="col-form-label">
+                    Metriche
+                  </div>
+                  <select class="form-select selectMetrics" aria-label="Default select example" id="recipient-metrics" onchange="changeMetricInterlocutorCrimes();">
+                    <option value="Default" selected>Default</option>
+                    <option value="PageRank">PageRank</option>
+                    <option value="WeightedPageRank">Weighted PageRank</option>
+                    <option value="Betweenness">Betweenness</option>
+                    <option value="Closeness">Closeness</option>
+                    <option value="Degree">Degree</option>
+                    <option value="InDegree">InDegree</option>
+                    <option value="OutDegree">OutDegree</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+{% endblock %}
